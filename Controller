@@ -1,0 +1,33 @@
+({
+ doInit : function(component, event, helper) {
+        $A.get("e.force:closeQuickAction").fire();
+        var eventParams = event.getParams();
+        if(eventParams.changeType === "LOADED") {
+            //console.log("Course Record loaded:::::" + JSON.stringify(component.get("v.EXECED_Financial_Transaction__c")));
+           
+            var createRecordEvent = $A.get("e.force:createRecord");
+            createRecordEvent.setParams({
+                "entityApiName": "EXECED_Event_Class__c",
+                "defaultFieldValues":{
+                    "Course__c" : component.get("v.recordId"),
+                    "Class_Number__c" : component.get("v.EXECED_Course__cObj.Course_Number__c"),
+                    "Name" : component.get("v.EXECED_Course__cObj.Name"),
+                    "KFS_Number__c" : component.get("v.EXECED_Course__cObj.KFS_Number__c"),
+                    "CEUS__c" : component.get("v.EXECED_Course__cObj.CEUS__c"),
+                    "CLE__c" : component.get("v.EXECED_Course__cObj.CLE__c"),
+                    "HRCI__c" : component.get("v.EXECED_Course__cObj.HRCI__c"),
+                    "SHRM__c" : component.get("v.EXECED_Course__cObj.SHRM__c"),
+                    "Credit_Hours__c" : component.get("v.EXECED_Course__cObj.Credit_Hours__c"),
+                    "Jurisdiction__c" : component.get("v.EXECED_Course__cObj.Jurisdiction__c"),
+                    "Class_Show_on_Web__c" : component.get("v.EXECED_Course__cObj.Show_on_Web__c"),
+                    "Event_Class_Fee__c" : component.get("v.EXECED_Course__cObj.Course_Fee__c"),
+                    "Text_for_Conf_Letter__c" : component.get("v.EXECED_Course__cObj.Text_for_Conf_Letter__c")
+                }
+            });
+            createRecordEvent.fire();
+           
+        } else if(eventParams.changeType === "REMOVED") {
+        } else if(eventParams.changeType === "ERROR") {
+        }
+ }
+})
