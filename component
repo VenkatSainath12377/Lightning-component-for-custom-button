@@ -1,0 +1,13 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+					 <aura:attribute name="EXECED_Course__c" type="EXECED_Course__c"/>
+    <aura:attribute name="EXECED_Course__cObj" type="EXECED_Course__c"/>
+    <aura:attribute name="errorMessage" type="String"/>
+    <force:recordData aura:id="EXECED_Course__cRecordLoader"
+        recordId="{!v.recordId}"
+        fields="Name,Course_Number__c,KFS_Number__c,Long_Course_Title__c,CEUS__c,CLE__c,CLE_Notes__c,HRCI__c,SHRM__c,Credit_Hours__c,Jurisdiction__c,Course_Number__c,Show_on_Web__c,Course_Fee__c,Text_for_Conf_Letter__c"
+        targetRecord="{!v.EXECED_Course__c}"
+        targetFields="{!v.EXECED_Course__cObj}"
+        targetError="{!v.errorMessage}"
+        recordUpdated="{!c.doInit}"
+    /> 
+</aura:component>
